@@ -1,4 +1,4 @@
-n=5
+n=10
 L=[]
 P=Primes()[2:n+2]
 for i in P:
@@ -34,15 +34,18 @@ for i in aeqs:
     asol.append(CRT_list(i,P))
 m=1    
 while len(asol)!=0 and m!=0:
-    p=Set(Primes()[n+2:n+3]).random_element()      
-    asols=copy(asol)
     rad=Set([])
+    t=0
+    while t<50:
+        p=Set(Primes()[n+2:n+3]).random_element()   
+        for i in copy(asol):
+            if i%p==0:
+                asol.remove(i)  
+        t=t+1
+        n=n+1
     for i in asol:
         rad=rad.union(Set(factor(radical(i))))
     if rad=={(3,1),(2,1)}:
         m=0
-    for i in copy(asol):
-        if i%p==0:
-            asol.remove(i)   
-    n=n+1
+    asols=copy(asol)
 print(asols)

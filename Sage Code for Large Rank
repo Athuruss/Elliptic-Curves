@@ -34,7 +34,6 @@ for i in aeqs:
     asol.append(CRT_list(i,P))
 m=1
 anum=len(copy(asol))
-print(anum)
 while len(asol)!=0 and m!=0:
     rad=Set([])
     t=0

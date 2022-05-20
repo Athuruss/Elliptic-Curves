@@ -1,4 +1,4 @@
-n=7
+n=6
 L=[]
 P=Primes()[2:n+2]
 for i in P:
@@ -36,18 +36,18 @@ m=1
 anum=len(copy(asol))
 while len(asol)!=0 and m!=0:
     asols=copy(asol)
-    ind=floor(max(asols)^(1/2))
+    ind=floor(max(asol)^(1/2))
     t=0
-    print(len(asols))
-    print(ind)
     while t<ind:
+        asolprev=copy(asol)
         p=Set(Primes()[n+2:n+3]).random_element()
         for i in asol:
             if i%p==0:
                 asol.remove(i)
         t=t+1
         n=n+1
+        if asolprev!=asol:
+            asols=asolprev
     if asols==asol:
         m=0
-    asols=copy(asol)
 print(asols)

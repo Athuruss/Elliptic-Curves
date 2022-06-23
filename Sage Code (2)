@@ -1,4 +1,4 @@
-n=6
+n=7
 L=[]
 P=Primes()[1:n+1]
 for i in P:

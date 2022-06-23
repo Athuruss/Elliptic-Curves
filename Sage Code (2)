@@ -1,0 +1,53 @@
+n=7
+L=[]
+P=Primes()[1:n+1]
+for i in P:
+    Nlist=[]
+    Maxlist=[]
+    for j in range(1,i):
+        C=EllipticCurve(Zmod(i),[0,0,0,j,0])
+        card=C.cardinality()
+        M=[j,card]
+        Maxlist.append(card)
+        Nlist.append(M)
+        Klist=[]
+    for k in range(0,len(Nlist)):
+        if Nlist[k][1]==max(Maxlist):
+            Klist.append(Nlist[k][0])
+    L.append(Klist)
+aeqs=[]
+for i in L[0]:
+    aeqs.append([i])
+for i in range(1,n):
+    aqsize=len(aeqs)
+    for a in range(0,len(L[i])-1):
+        for b in range(0,aqsize):
+            aeqs.append(copy(aeqs[b]))
+    ind1=-1
+    for j in copy(L[i]):
+        ind2=int(len(aeqs)/len(L[i]))
+        ind1=ind1+1
+        for k in range(0,ind2):
+            aeqs[k+ind1*ind2].append(j)
+asol=[]
+for i in aeqs:
+    asol.append(CRT_list(i,P))
+m=1
+anum=len(copy(asol))
+while len(asol)!=0 and m!=0:
+    asols=copy(asol)
+    ind=floor(max(asol)^(1/2))
+    t=0
+    while t<ind:
+        asolprev=copy(asol)
+        p=Set(Primes()[n+1:n+2])[0]
+        for i in asol:
+            if i%p==0:
+                asol.remove(i)
+        t=t+1
+        n=n+1
+        if asolprev!=asol:
+            asols=asolprev
+    if asols==asol:
+        m=0
+print(asols)

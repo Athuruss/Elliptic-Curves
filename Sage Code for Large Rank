@@ -40,7 +40,7 @@ while len(asol)!=0 and m!=0:
     t=0
     while t<ind:
         asolprev=copy(asol)
-        p=Set(Primes()[n+2:n+3]).random_element()
+        p=Set(Primes()[n+2:n+3])[0]
         for i in asol:
             if i%p==0:
                 asol.remove(i)

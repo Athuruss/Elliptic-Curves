@@ -5,7 +5,7 @@ for i in P:
     Nlist=[]
     Maxlist=[]
     for j in range(1,i):
-        C=EllipticCurve(Zmod(i),[0,0,0,0,j])
+        C=EllipticCurve(Zmod(i),[0,0,0,j,0])
         card=C.cardinality()
         M=[j,card]
         Maxlist.append(card)

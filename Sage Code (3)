@@ -1,0 +1,39 @@
+n=1
+b=2^7*3^3
+for i in range(2,n+2):
+    b=b*Set(Primes()[i:i+1])[0]
+k=10*sqrt(b)
+cand=ellipsis_range(1,25,Ellipsis,k)
+m=1
+k=n
+while len(cand)!=0 and m!=0:
+    candprev=copy(cand)
+    ind=floor(abs(max(cand)^2-4*b)^(1/2))
+    p=Set(Primes()[n+2:n+3])[0]
+    n=n+1
+    for i in copy(cand):
+        disc=int(i^2-4*b)
+        if disc%p==0:
+            cand.remove(i)
+    if len(cand)==0:
+        cand=copy(candprev)
+        break
+    size=[]
+    for i in copy(cand):
+        C=EllipticCurve(Zmod(p),[0,i,0,b,0])
+        size.append(C.cardinality())
+    large=max(size)
+    TempList=[]
+    for i in range(0,len(size)):
+        if size[i]==large:
+            TempList.append(copy(cand[i]))
+    cand=copy(TempList)
+    if candprev==cand:
+        k=k+1
+    else:
+        k=n
+    if k==ind:
+        break
+    if len(cand)==1:
+        break
+print(cand)       
